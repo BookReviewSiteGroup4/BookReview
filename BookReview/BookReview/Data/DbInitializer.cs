@@ -16,18 +16,31 @@ namespace BookReview.Data
             {
                 return;   // DB has been seeded
             }
-
-            var authors = new Author[]
+            else
             {
-                new Author{FullName ="Paul Tannenberg", Birtdate = new DateTime(1970-01-01), DeathDate = new DateTime(1970-01-02)}
-            };
 
-            foreach(Author a in authors)
-            {
-                context.Author.Add(a);
             }
 
-            context.SaveChanges();
+            if (context.Author.Any())
+            {
+                return;   // DB has been seeded
+            }
+            else
+            {
+                var authors = new Author[]
+                {   
+                new Author{FullName ="Paul Tannenberg", Birtdate = new DateTime(1970-01-01), DeathDate = new DateTime(1970-01-02)}
+                };
+
+                foreach (Author a in authors)
+                {
+                    context.Author.Add(a);
+                }
+
+                context.SaveChanges();
+            }
+
+            
         }
     }
 }
