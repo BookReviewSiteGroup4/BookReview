@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace BookReview
 {
+    //hejhej detta är test
     public class Startup
     {
         public Startup(IConfiguration configuration)
