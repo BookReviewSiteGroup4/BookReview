@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BookReview.Models
 {
-    public class Author
+    public class Book
     {
         [Key] public int Id { get; set; }
-        [Required] public string FullName { get; set; }
-        [Required] public DateTime Birtdate { get; set; }
-
-        public DateTime DeathDate { get; set; }
+        [Required] public string Title { get; set; }
+        [Required] public Author Author { get; set; }
+        public List<Review> Review { get; set; }
+        [Required] public string ISBN { get; set; }
     }
 }

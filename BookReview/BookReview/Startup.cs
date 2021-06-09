@@ -26,6 +26,7 @@ namespace BookReview
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbCon>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddControllersWithViews();
         }
 
