@@ -1,3 +1,4 @@
+using BookReview.Data;
 using BookReview.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

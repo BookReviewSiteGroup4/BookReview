@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookReview.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookReview.Models
+namespace BookReview.Data
 {
     public class DbCon : DbContext
     {
@@ -15,15 +16,9 @@ namespace BookReview.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Author>().HasData(new Author
-            {
-                Id = 1,
-                FullName = "Paul Tannenberg",
-                Birtdate = new DateTime(1970-01-01),
-                DeathDate = new DateTime(1970 - 01 - 02),
-            });
+            modelBuilder.Entity<Author>().ToTable("Author");
+            modelBuilder.Entity<Book>().ToTable("Book");
+            modelBuilder.Entity<Review>().ToTable("Review");
         }
 
 
