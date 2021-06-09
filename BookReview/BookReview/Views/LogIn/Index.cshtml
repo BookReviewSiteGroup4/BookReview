@@ -1,0 +1,27 @@
+﻿@model BookReview.Models.User
+<!DOCTYPE HTML>
+<html lang="sv">
+<head>
+
+    <meta charset="utf-8" />
+</head>
+<body class="user">
+    <!-- Rubrik och underrubrik för att kunna logga in. -->
+
+    <h2>Logga In</h2>
+    <!-- Ett meddelande till användaren-->
+    <h3>@ViewBag.Message</h3>
+    <h4> Använd ANNA som användarnamn och lösenord för att testa vara våran kund idag!</h4>
+    <!-- ett forumlär med hjälp av racor syntax-->
+    <!-- -->
+    @using (Html.BeginForm())
+    {
+                <div>Användarnamn</div>
+                <div> @Html.EditorFor(m => m.Username)</div>
+                                <div>Lösenord</div>
+                                                <div>@Html.PasswordFor(m => m.Password)</div>
+                                                                <input type="submit" value="Logga In" />}
+
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 using BookReview.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,11 @@ namespace BookReview
             services.AddDbContext<DbCon>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddControllersWithViews();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => { options.LoginPath = "/LogIn/Index"; });
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
