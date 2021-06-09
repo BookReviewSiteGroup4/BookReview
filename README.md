@@ -1,6 +1,6 @@
 # BookReview
 
-DReAmTeaM!!!!!
+DReAmTeaM!!!
 
 Gruppindelning 5 grupper om 3-4 personer
 Ni kommer tillsammans att skapa en asp.net mvc core siite för reviews av böcker.
