@@ -4,14 +4,16 @@ using BookReview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    partial class DbConModelSnapshot : ModelSnapshot
+    [Migration("20210609130712_9")]
+    partial class _9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace BookReview.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReviewID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -76,6 +75,9 @@ namespace BookReview.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BookId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -87,12 +89,9 @@ namespace BookReview.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("bookId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("bookId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("Review");
                 });
@@ -108,11 +107,9 @@ namespace BookReview.Migrations
 
             modelBuilder.Entity("BookReview.Models.Review", b =>
                 {
-                    b.HasOne("BookReview.Models.Book", "book")
+                    b.HasOne("BookReview.Models.Book", null)
                         .WithMany("Review")
-                        .HasForeignKey("bookId");
-
-                    b.Navigation("book");
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("BookReview.Models.Author", b =>

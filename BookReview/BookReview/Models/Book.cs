@@ -12,10 +12,10 @@ namespace BookReview.Models
         [Required] public string Title { get; set; }
         [Required] public string ISBN { get; set; }
 
-        //public int? AuthorID {get;set;}
-        public Author Author { get; set; }
+        public int? AuthorID {get;set;}
+        public virtual Author Author { get; set; }
 
-        //public int? ReviewID { get; set; }
+        public int? ReviewID { get; set; }
         public virtual IList<Review> Review { get; set; }
 
     }

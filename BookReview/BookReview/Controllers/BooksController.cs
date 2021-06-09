@@ -22,7 +22,8 @@ namespace BookReview.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Book.ToListAsync());
+            var dbCon = _context.Book.Include(b => b.Author);
+            return View(await dbCon.ToListAsync());
         }
 
         // GET: Books/Details/5
@@ -34,6 +35,7 @@ namespace BookReview.Controllers
             }
 
             var book = await _context.Book
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null)
             {
@@ -46,6 +48,7 @@ namespace BookReview.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
+            ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ISBN")] Book book)
+        public async Task<IActionResult> Create([Bind("Id,Title,ISBN,AuthorID,ReviewID")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace BookReview.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName", book.AuthorID);
             return View(book);
         }
 
@@ -78,6 +82,7 @@ namespace BookReview.Controllers
             {
                 return NotFound();
             }
+            ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName", book.AuthorID);
             return View(book);
         }
 
@@ -86,7 +91,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ISBN")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ISBN,AuthorID,ReviewID")] Book book)
         {
             if (id != book.Id)
             {
@@ -113,6 +118,7 @@ namespace BookReview.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName", book.AuthorID);
             return View(book);
         }
 
@@ -125,6 +131,7 @@ namespace BookReview.Controllers
             }
 
             var book = await _context.Book
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null)
             {
