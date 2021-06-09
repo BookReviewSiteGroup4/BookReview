@@ -12,5 +12,6 @@ namespace BookReview.Models
         [Required] public string FullName { get; set; }
         [Required] public DateTime Birtdate { get; set; }
         public DateTime DeathDate { get; set; }
+        //public virtual IList<Book> Books { get; set; }
     }
 }

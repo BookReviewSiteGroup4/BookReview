@@ -29,7 +29,7 @@ namespace BookReview.Data
             {
                 var authors = new Author[]
                 {   
-                new Author{FullName ="Paul Tannenberg", Birtdate = new DateTime(1970-01-01), DeathDate = new DateTime(1970-01-02)}
+                new Author{FullName ="Paul Tannenberg", Birtdate = new DateTime(1970,01,01), DeathDate = new DateTime(1970,01,02)}
                 };
 
                 foreach (Author a in authors)

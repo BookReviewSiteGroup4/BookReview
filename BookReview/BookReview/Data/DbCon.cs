@@ -14,6 +14,8 @@ namespace BookReview.Data
 
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().ToTable("Author");
