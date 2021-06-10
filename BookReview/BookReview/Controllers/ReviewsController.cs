@@ -65,7 +65,7 @@ namespace BookReview.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title", review.Name);
+            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title", review.Title);
             return View(review);
         }
 
