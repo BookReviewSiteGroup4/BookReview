@@ -15,8 +15,8 @@ namespace BookReview.Models
         public int? AuthorID {get;set;}
         public virtual Author Author { get; set; }
 
-        public int? ReviewID { get; set; }
-        public virtual IList<Review> Review { get; set; }
+        //public int? ReviewID { get; set; }
+        public virtual ICollection<Review> Review { get; set; }
 
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookReview.Data;
 using BookReview.Models;
+using BookReview.ViewModels;
 
 namespace BookReview.Controllers
 {
@@ -27,16 +28,27 @@ namespace BookReview.Controllers
         }
 
         // GET: Books/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Book
-                .Include(b => b.Author)
-                .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            var book = from r in _context.Review
+                                   join b in _context.Book on r.BookID equals b.Id into r2
+                                   from b in r2.DefaultIfEmpty()
+                                   select new  BookViewModel
+                                   { 
+                                       Book = b,
+                                       Review = r
+                                   };
+
+            BookViewModel bvm = new BookViewModel();
+            
+
             if (book == null)
             {
                 return NotFound();
@@ -57,7 +69,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ISBN,AuthorID,ReviewID")] Book book)
+        public async Task<IActionResult> Create([Bind("Id,Title,ISBN,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +103,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ISBN,AuthorID,ReviewID")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ISBN,AuthorID")] Book book)
         {
             if (id != book.Id)
             {

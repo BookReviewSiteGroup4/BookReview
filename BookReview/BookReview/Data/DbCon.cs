@@ -18,13 +18,14 @@ namespace BookReview.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Book>().HasMany(c => c.Review).WithOne(e => e.book);
+
             modelBuilder.Entity<Author>().ToTable("Author");
             modelBuilder.Entity<Book>().ToTable("Book");
             modelBuilder.Entity<Review>().ToTable("Review");
         }
 
-
-
+       
 
         public DbSet<Author> Author {get;set;}
         public DbSet<Book> Book { get; set; }

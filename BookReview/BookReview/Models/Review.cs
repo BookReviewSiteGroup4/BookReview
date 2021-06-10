@@ -8,6 +8,7 @@ namespace BookReview.Models
         [Required] public string Title { get; set; }
         [Required] public string Description { get; set; }
         [Required] public decimal ReviewScore { get; set; }
+        public int? BookID { get; set; }
         public virtual Book book { get; set; }
     }
 }
