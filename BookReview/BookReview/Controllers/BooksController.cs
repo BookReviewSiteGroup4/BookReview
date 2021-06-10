@@ -37,17 +37,40 @@ namespace BookReview.Controllers
 
 
 
-            var book = from r in _context.Review
-                                   join b in _context.Book on r.BookID equals b.Id into r2
-                                   from b in r2.DefaultIfEmpty()
-                                   select new  BookViewModel
-                                   { 
-                                       Book = b,
-                                       Review = r
-                                   };
+            //var book = from r in _context.Review
+            //join b in _context.Book on r.BookID equals b.Id into r2
+            //from b in r2
+            //select new  BookViewModel
+            //{ 
+            //    Book = b,
+            //    Review = r
+            //};
 
-            BookViewModel bvm = new BookViewModel();
-            
+            var book = from b in _context.Book
+                       join r in _context.Review on b.Id equals r.BookID into b2
+                       from r in b2.DefaultIfEmpty()
+                       
+                       select new BookViewModel
+                       {
+                           Book = b,
+                           Review = r,
+                           Author = b.Author
+                       };
+
+            if (!book.Any())
+            {
+                 book = from b in _context.Book
+                           join r in _context.Review on b.Id equals r.BookID into b2
+                           from r in b2.DefaultIfEmpty()
+
+                           select new BookViewModel
+                           {
+                               Book = b,
+                               Author = b.Author
+                           };
+            }
+
+
 
             if (book == null)
             {

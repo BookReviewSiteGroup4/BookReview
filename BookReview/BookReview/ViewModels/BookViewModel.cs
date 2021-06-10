@@ -11,5 +11,7 @@ namespace BookReview.ViewModels
     {
         public Book Book { get; set; }
         public Review Review { get; set; }
+
+        public Author Author { get; set; }
     }
 }
