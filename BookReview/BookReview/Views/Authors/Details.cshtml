@@ -1,4 +1,4 @@
-﻿@model BookReview.Models.Author
+﻿@model BookReview.ViewModels.AuthorViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -10,27 +10,41 @@
     <h4>Author</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.FullName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Author.FullName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Birtdate)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.Birtdate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Birtdate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Author.Birtdate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeathDate)
+        @if (Model.Author.DeathDate != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Author.DeathDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Author.DeathDate)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Books)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeathDate)
-        </dd>
-    </dl>
+    </dl>    
+    <ul>
+        @foreach (var book in Model.Books)
+        {
+            <li class="col-sm-10">                
+                @book.Title                
+            </li>
+        }
+    </ul>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Author.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>

@@ -10,8 +10,13 @@ namespace BookReview.Models
     {
         [Key] public int Id { get; set; }
         [Required] public string FullName { get; set; }
-        [Required] public DateTime Birtdate { get; set; }
-        public DateTime DeathDate { get; set; }
+
+        [Required] 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)] 
+        public DateTime Birtdate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime? DeathDate { get; set; }
         public virtual IList<Book> Books { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookReview.Data;
 using BookReview.Models;
+using BookReview.ViewModels;
 
 namespace BookReview.Controllers
 {
@@ -40,7 +41,14 @@ namespace BookReview.Controllers
                 return NotFound();
             }
 
-            return View(author);
+            var books = _context.Book.Where(b => b.AuthorID == id);
+
+            AuthorViewModel avm = new AuthorViewModel();
+
+            avm.Author = author;
+            avm.Books = books;
+
+            return View(avm);
         }
 
         // GET: Authors/Create
