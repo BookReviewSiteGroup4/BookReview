@@ -10,8 +10,7 @@ namespace BookReview.ViewModels
     public class BookViewModel
     {
         public Book Book { get; set; }
-        public Review Review { get; set; }
-
+        public IEnumerable<Review> Reviews { get; set; }
         public Author Author { get; set; }
     }
 }

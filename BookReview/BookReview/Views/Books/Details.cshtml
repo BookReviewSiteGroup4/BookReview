@@ -1,5 +1,4 @@
-﻿@*@model BookReview.ViewModels.BookViewModel*@
-@model IEnumerable<BookReview.ViewModels.BookViewModel>
+﻿@model BookReview.ViewModels.BookViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -10,44 +9,39 @@
 <div>
     <h4>Book</h4>
     <hr />
-    @foreach (var item in Model)
-    {
-
-        <dl class="row">
-            <dt class="col-sm-2">
-                Title: 
-            </dt>
-            <dd class="col-sm-10">
-                @item.Book.Title
-            </dd>
-            <dt class="col-sm-2">
-                ISBN: 
-            </dt>
-            <dd class="col-sm-10">
-                @item.Book.ISBN
-            </dd>
-            <dt class="col-sm-2">
-                Author: 
-            </dt>
-            <dd class="col-sm-10">
-                @item.Book.Author.FullName
-            </dd>
-            @if (item.Review != null)
-            {
-                <dt class="col-sm-2">
-
-                    Review: 
-                </dt>
-                <dd class="col-sm-10">
-                    @item.Review.Description
-                </dd>
-            }
-        </dl>
-                
-            }
-
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Book.Title
+        </dd>
+        <dt class="col-sm-2">
+            ISBN:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Book.ISBN
+        </dd>
+        <dt class="col-sm-2">
+            Author:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Author.FullName
+        </dd>
+        <dt class="col-sm-2">
+            Review:
+        </dt>
+    </dl>
+    <ul>
+        @foreach (var review in Model.Reviews)
+        {
+            <li class="col-sm-10">
+                @review.Description
+            </li>
+        }
+    </ul>
 </div>
 <div>
-    @*<a asp-action="Edit" asp-route-id="@Model.">Edit</a> |*@
+    <a asp-action="Edit" asp-route-id="@Model.Book.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

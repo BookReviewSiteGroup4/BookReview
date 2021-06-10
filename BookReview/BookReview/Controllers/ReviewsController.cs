@@ -48,7 +48,7 @@ namespace BookReview.Controllers
         // GET: Reviews/Create
         public IActionResult Create()
         {
-            ViewData["BookID"] = new SelectList(_context.Book, "Id", "ISBN");
+            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace BookReview.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookID"] = new SelectList(_context.Book, "Id", "Title", review.BookID);
+            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title", review.Name);
             return View(review);
         }
 

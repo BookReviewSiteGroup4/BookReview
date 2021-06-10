@@ -35,49 +35,48 @@ namespace BookReview.Controllers
                 return NotFound();
             }
 
+            //var book = from b in _context.Book
+            //           join r in _context.Review on b.Id equals r.BookID into b2
+            //           from r in b2.DefaultIfEmpty()
 
+            //           select new BookViewModel
+            //           {
+            //               Book = b,
+            //               Review = r,
+            //               Author = b.Author
+            //           };
 
-            //var book = from r in _context.Review
-            //join b in _context.Book on r.BookID equals b.Id into r2
-            //from b in r2
-            //select new  BookViewModel
-            //{ 
-            //    Book = b,
-            //    Review = r
-            //};
+            //if (!book.Any())
+            //{
+            //     book = from b in _context.Book
+            //               join r in _context.Review on b.Id equals r.BookID into b2
+            //               from r in b2.DefaultIfEmpty()
 
-            var book = from b in _context.Book
-                       join r in _context.Review on b.Id equals r.BookID into b2
-                       from r in b2.DefaultIfEmpty()
-                       
-                       select new BookViewModel
-                       {
-                           Book = b,
-                           Review = r,
-                           Author = b.Author
-                       };
+            //               select new BookViewModel
+            //               {
+            //                   Book = b,
+            //                   Author = b.Author
+            //               };
+            //}
 
-            if (!book.Any())
-            {
-                 book = from b in _context.Book
-                           join r in _context.Review on b.Id equals r.BookID into b2
-                           from r in b2.DefaultIfEmpty()
-
-                           select new BookViewModel
-                           {
-                               Book = b,
-                               Author = b.Author
-                           };
-            }
-
-
+            //.Include(b => b.Author)
+            var book = _context.Book.Where(b => b.Id == id).Include(b => b.Author).FirstOrDefault();
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            var reviews = _context.Review.Where(r => r.BookID == id);
+
+            var author = book.Author;
+
+            BookViewModel bvm = new BookViewModel();
+            bvm.Book = book;
+            bvm.Reviews = reviews;
+            bvm.Author = author;
+
+            return View(bvm);
         }
 
         // GET: Books/Create
