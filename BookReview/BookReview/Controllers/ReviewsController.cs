@@ -46,10 +46,22 @@ namespace BookReview.Controllers
         }
 
         // GET: Reviews/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title");
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var review = new Review();
+            review.BookID = id;
+            review.book = _context.Book.Where(x => x.Id == id).FirstOrDefault();
+            if (review == null)
+            {
+                return NotFound();
+            }
+            ViewData["BookID"] = new SelectList(_context.Book, "Id", "Title", review.BookID);
+            return View(review);
         }
 
         // POST: Reviews/Create
@@ -57,7 +69,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,ReviewScore,BookID")] Review review)
+        public async Task<IActionResult> Create([Bind("Title,Description,ReviewScore,BookID")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +77,7 @@ namespace BookReview.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookId"] = new SelectList(_context.Book, "Id", "Title", review.Title);
+            ViewData["BookID"] = new SelectList(_context.Book, "Id", "Title", review.BookID);
             return View(review);
         }
 

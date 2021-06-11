@@ -34,32 +34,7 @@ namespace BookReview.Controllers
             {
                 return NotFound();
             }
-
-            //var book = from b in _context.Book
-            //           join r in _context.Review on b.Id equals r.BookID into b2
-            //           from r in b2.DefaultIfEmpty()
-
-            //           select new BookViewModel
-            //           {
-            //               Book = b,
-            //               Review = r,
-            //               Author = b.Author
-            //           };
-
-            //if (!book.Any())
-            //{
-            //     book = from b in _context.Book
-            //               join r in _context.Review on b.Id equals r.BookID into b2
-            //               from r in b2.DefaultIfEmpty()
-
-            //               select new BookViewModel
-            //               {
-            //                   Book = b,
-            //                   Author = b.Author
-            //               };
-            //}
-
-            //.Include(b => b.Author)
+            
             var book = _context.Book.Where(b => b.Id == id).Include(b => b.Author).FirstOrDefault();
 
             if (book == null)
