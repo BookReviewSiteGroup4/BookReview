@@ -1,0 +1,50 @@
+﻿@model BookReview.ViewModels.StatisticsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+        </tr>
+        <tr>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var a in Model.Author)
+            {
+             <tr>
+                <td>
+                    @a.FullName
+                </td>
+             </tr>
+            }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+        <tr>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.Book)
+        {
+            <tr>
+                <td>
+                    @a.Title
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

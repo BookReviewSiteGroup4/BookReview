@@ -51,6 +51,12 @@ namespace BookReview.Controllers
             bvm.Reviews = reviews;
             bvm.Author = author;
 
+            if(reviews.Where(x => x.BookID == id).Any())
+            {
+                bvm.Book.AverageRating = reviews.Where(x => x.BookID == id).Average(c => c.ReviewScore);
+                bvm.Book.AverageRating = Math.Round(bvm.Book.AverageRating, 1);
+            }
+
             return View(bvm);
         }
 
@@ -66,7 +72,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ISBN,AuthorID")] Book book)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,ISBN,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +106,7 @@ namespace BookReview.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ISBN,AuthorID")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,ISBN,AuthorID")] Book book)
         {
             if (id != book.Id)
             {
