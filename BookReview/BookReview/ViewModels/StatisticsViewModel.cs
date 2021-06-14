@@ -10,6 +10,5 @@ namespace BookReview.ViewModels
     {
         public IEnumerable<Author> Author { get; set; }
         public IEnumerable<Book> Book { get; set; }
-        public IEnumerable<Review> Reviews { get; set; }
     }
 }
