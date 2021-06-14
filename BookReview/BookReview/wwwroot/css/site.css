@@ -73,3 +73,7 @@ body {
 .table_statitics th {
     width: 50%;
 }
+
+.frontpage_Cards:hover {
+    opacity: 0.7;
+}
