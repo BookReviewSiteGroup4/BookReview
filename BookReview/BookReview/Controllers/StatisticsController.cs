@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BookReview.Controllers
 {
-    public class Statistics : Controller
+    public class StatisticsController : Controller
     {
         private readonly DbCon _context;
 
-        public Statistics(DbCon context)
+        public StatisticsController(DbCon context)
         {
             _context = context;
         }

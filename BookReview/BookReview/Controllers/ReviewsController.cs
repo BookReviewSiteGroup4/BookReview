@@ -13,6 +13,7 @@ namespace BookReview.Controllers
     public class ReviewsController : Controller
     {
         private readonly DbCon _context;
+        public Book book;
 
         public ReviewsController(DbCon context)
         {
@@ -75,7 +76,8 @@ namespace BookReview.Controllers
             {
                 _context.Add(review);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                book = _context.Book.Where(x => x.Id == review.BookID).FirstOrDefault();
+                return RedirectToAction("Details", "Books", book);
             }
             ViewData["BookID"] = new SelectList(_context.Book, "Id", "Title", review.BookID);
             return View(review);
