@@ -1,50 +1,59 @@
 ﻿@model BookReview.ViewModels.StatisticsViewModel
 
-@{
-    ViewData["Title"] = "Index";
-}
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-<h1>Index</h1>
+    <h1>Statistics (godkänd av Nestor LTD)</h1>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Full Name</th>
-        </tr>
-        <tr>
-            <th>Average Rating</th>
-        </tr>
-    </thead>
-    <tbody>
+    <table class="table table_statitics">
+        <thead>
+            <tr>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Average Rating
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var a in Model.Author)
             {
-             <tr>
-                <td>
-                    @a.FullName
-                </td>
-             </tr>
+                <tr>
+                    <td>
+                        @a.FullName
+                    </td>
+                    <td>
+                        @if(a.Books.Any(x => x.Review.Any()))
+                        {
+                        @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore))
+                        }
+                    </td>
+                </tr>
             }
-    </tbody>
-</table>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-        </tr>
-        <tr>
-            <th>Average Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var a in Model.Book)
-        {
+        </tbody>
+    </table>
+    <br />
+    <table class="table table_statitics">
+        <thead>
             <tr>
-                <td>
-                    @a.Title
-                </td>
+                <th>Title</th>
+                <th>Number of reviews</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var a in Model.Book)
+            {
+                <tr>
+                    <td>
+                        @a.Title
+                    </td>
+                    <td>
+                        @a.Review.Count
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

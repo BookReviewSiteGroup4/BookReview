@@ -8,7 +8,7 @@ namespace BookReview.ViewModels
 {
     public class StatisticsViewModel
     {
-        public List<Author> Author { get; set; }
-        public List<Book> Book { get; set; }
+        public IEnumerable<Author> Author { get; set; }
+        public IEnumerable<Book> Book { get; set; }
     }
 }
