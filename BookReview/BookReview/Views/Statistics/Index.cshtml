@@ -6,7 +6,8 @@
 
     <h1>Statistics (godkänd av Nestor LTD)</h1>
 
-
+    <br />
+    <br />
     <table class="table">
         <thead>
             <tr>
@@ -25,20 +26,24 @@
                     <td>
                         @a.FullName
                     </td>
-                </tr>
-                <tr>
                     <td>
+                        @if(a.Books.Any(x => x.Review.Any()))
+                        {
+                        @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore))
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
     <br />
+    <br />
+    <br />
     <table class="table">
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Average Rating</th>
+                <th>Ratings</th>
             </tr>
         </thead>
         <tbody>
@@ -48,9 +53,8 @@
                     <td>
                         @a.Title
                     </td>
-                </tr>
-                <tr>
                     <td>
+                        @a.Review.Count()
                     </td>
                 </tr>
             }

@@ -19,8 +19,8 @@ namespace BookReview.Controllers
         }
         public  IActionResult Index()
         {
-            var author = _context.Author.ToList();
-            var book = _context.Book.ToList();
+            var author = _context.Author.Include(x => x.Books).ThenInclude(c => c.Review).ToList();
+            var book = _context.Book.Include(x => x.Review).ToList();
 
             StatisticsViewModel svm = new StatisticsViewModel();
 
