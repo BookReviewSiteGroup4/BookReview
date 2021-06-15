@@ -4,14 +4,16 @@ using BookReview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    partial class DbConModelSnapshot : ModelSnapshot
+    [Migration("20210615085043_nullable2")]
+    partial class nullable2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace BookReview.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Birtdate")
+                    b.Property<DateTime>("Birtdate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeathDate")
@@ -58,8 +60,9 @@ namespace BookReview.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ISBN")
-                        .HasColumnType("int");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -68,9 +71,6 @@ namespace BookReview.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorID");
-
-                    b.HasIndex("ISBN")
-                        .IsUnique();
 
                     b.ToTable("Book");
                 });
@@ -115,7 +115,7 @@ namespace BookReview.Migrations
             modelBuilder.Entity("BookReview.Models.Review", b =>
                 {
                     b.HasOne("BookReview.Models.Book", "book")
-                        .WithMany("Reviews")
+                        .WithMany("Review")
                         .HasForeignKey("BookID");
 
                     b.Navigation("book");
@@ -128,7 +128,7 @@ namespace BookReview.Migrations
 
             modelBuilder.Entity("BookReview.Models.Book", b =>
                 {
-                    b.Navigation("Reviews");
+                    b.Navigation("Review");
                 });
 #pragma warning restore 612, 618
         }
