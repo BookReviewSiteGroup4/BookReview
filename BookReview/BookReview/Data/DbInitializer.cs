@@ -22,9 +22,63 @@ namespace BookReview.Data
                 {
                     new Author
                     {
+                        FullName ="Unknown",
+                        Birtdate = null,
+                        DeathDate = null,
+                        Books = new List<Book>()
+                        {
+                            new Book
+                            {
+                                Title = "The Epic of Gilgamesh",
+                                Description = "Miraculously preserved on clay tablets dating back as far as four thousand years, the poem of Gilgamesh, King of Uruk, predates Homer by many centuries. The story tells of Gilgamesh's adventures with the wild man Enkidu, and of his arduous journey to the ends of the earth in quest of the Babylonian Noah and the secret of immortality. Alongside its themes of family, friendship and the duties of kings, the Epic of Gilgamesh is, above all, about mankind's eternal struggle with the fear of death. This new edition of Andrew George's translation has been extensively revised to include recently discovered fragments and new sources.",
+                                ISBN = 9780140449198
+                            },
+                            new Book
+                            {
+                                Title = "Beowulf",
+                                Description = "Beowulf is the greatest surviving work of literature in Old English, unparalleled in its epic grandeur and scope. It tells the story of the heroic Beowulf and of his battles, first with the monster Grendel, who has laid waste to the great hall of the Danish king Hrothgar, then with Grendel's avenging mother, and finally with a dragon that threatens to devastate his homeland. Through its blend of myth and history, Beowulf vividly evokes a twilight world in which men and supernatural forces live side by side. And it celebrates the endurance of the human spirit in a transient world.",
+                                ISBN = 9780140449310
+                            },
+                            new Book
+                            {
+                                Title = "The Arabian Nights: Tales of 1,001 Nights",
+                                Description = "Every night for three years the vengeful King Shahriyar sleeps with a different virgin, executing her the next morning. To end this brutal pattern and to save her own life, the vizier's daughter, Shahrazad, begins to tell the king stories of adventure, love, riches and wonder - tales of mystical lands peopled with princes and hunchbacks, the Angel of Death and magical spirits, tales of the voyages of Sindbad, of Ali Baba outwitting a band of forty thieves and of jinnis trapped in rings and in lamps. The sequence of stories will last 1,001 nights.",
+                                ISBN = 9780140449389
+                            }
+                        }
+                    },
+                    new Author
+                    {
                         FullName ="Paul Tannenberg",
                         Birtdate = new DateTime(1968,08,02),
                         DeathDate = null
+                    },
+                    new Author
+                    {
+                        FullName ="Émile Nestor",
+                        Birtdate = new DateTime(1991,03,27),
+                        DeathDate = null,
+                        Books = new List<Book>()
+                        {
+                            new Book
+                            {
+                                Title = "Nestor och Whiskey",
+                                Description = "En man. En katt. Ett äventyr.",
+                                ISBN = 9780456789198
+                            },
+                            new Book
+                            {
+                                Title = "Satanism 101",
+                                Description = "En praktisk handbok för systematisk användning av det fördolda.",
+                                ISBN = 9780140449666
+                            },
+                            new Book
+                            {
+                                Title = "Stefan och Jag",
+                                Description = "En skrämmande inblick i hur det kan vara att leva med en stalker.",
+                                ISBN = 9780140412345
+                            }
+                        }
                     },
                     new Author
                     {
