@@ -18,7 +18,9 @@ namespace BookReview.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>().HasMany(c => c.Review).WithOne(e => e.book);
+            modelBuilder.Entity<Book>().HasIndex(x => x.ISBN).IsUnique();
+
+            modelBuilder.Entity<Book>().HasMany(c => c.Reviews).WithOne(e => e.book);
 
             modelBuilder.Entity<Author>().ToTable("Author");
             modelBuilder.Entity<Book>().ToTable("Book");

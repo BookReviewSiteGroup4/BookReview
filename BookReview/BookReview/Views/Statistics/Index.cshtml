@@ -26,9 +26,9 @@
                         @a.FullName
                     </td>
                     <td>
-                        @if(a.Books.Any(x => x.Review.Any()))
+                        @if(a.Books.Any(x => x.Reviews.Any()))
                         {
-                        @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore))
+                        @a.Books.Where(x => x.Reviews.Any()).Average(c => c.Reviews.Average(z => z.ReviewScore))
                         }
                     </td>
                 </tr>
@@ -51,7 +51,7 @@
                         @a.Title
                     </td>
                     <td>
-                        @a.Review.Count
+                        @a.Reviews.Count
                     </td>
                 </tr>
             }
