@@ -4,12 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Book Gallery</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+   
+    <a asp-action="Create"  class="btn btn-outline-info">Add new book</a>
 </p>
-<table class="table">
+
+<partial name="~/Views/Shared/_BookCard.cshtml" />
+
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -51,4 +56,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
