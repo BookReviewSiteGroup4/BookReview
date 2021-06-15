@@ -28,22 +28,28 @@
 
     <div class="row">
         <div class="col-md-4">
-            <div class="frontpage_Cards">
-                <img src="~/imgs/frontpage/bestsellers.jpg" class="img-thumbnail img-fluid" />
-                <h1>TOP 3 BEST SELLER</h1>
-            </div>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="frontpage_Cards">
+                    <img src="~/imgs/frontpage/bestsellers.jpg" class="img-thumbnail img-fluid" />
+                    <h1>TOP 3 BEST SELLER</h1>
+                </div>
+             </a>
         </div>
         <div class="col-md-4">
-            <div class="frontpage_Cards">
-                <img src="~/imgs/frontpage/top3author.jpg" class="img-thumbnail img-fluid" />
-                <h1>TOP 3 AUTHORS</h1>
-            </div>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Statistics" asp-action="TopAuthor">
+                <div class="frontpage_Cards">
+                    <img src="~/imgs/frontpage/top3author.jpg" class="img-thumbnail img-fluid" />
+                    <h1>TOP 3 AUTHORS</h1>
+                </div>
+             </a>
         </div>
         <div class="col-md-4">
-            <div class="frontpage_Cards">
-                <img src="~/imgs/frontpage/topReviews.jpg" class="img-thumbnail img-fluid" />
-                <h1>BEST REVIEWS</h1>
-            </div>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Statistics" asp-action="BestReviews">
+                <div class="frontpage_Cards">
+                    <img src="~/imgs/frontpage/topReviews.jpg" class="img-thumbnail img-fluid" />
+                    <h1>BEST REVIEWS</h1>
+                </div>
+            </a>
         </div>
     </div>
 </div>
