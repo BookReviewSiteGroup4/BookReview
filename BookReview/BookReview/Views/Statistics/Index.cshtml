@@ -29,7 +29,7 @@
                     <td>
                         @if(a.Books.Any(x => x.Reviews.Any()))
                         {
-                            reviewRound = @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore));
+                            reviewRound = @a.Books.Where(x => x.Reviews.Any()).Average(c => c.Reviews.Average(z => z.ReviewScore));
                             Math.Round(reviewRound, 2);
                             <span>@reviewRound</span>
                         }
