@@ -4,14 +4,16 @@ using BookReview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    partial class DbConModelSnapshot : ModelSnapshot
+    [Migration("20210614135849_andrea3")]
+    partial class andrea3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace BookReview.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Birtdate")
+                    b.Property<DateTime>("Birtdate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeathDate")
@@ -52,7 +54,7 @@ namespace BookReview.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("AverageRating")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(16,2)");
 
                     b.Property<string>("Description")
                         .IsRequired()
