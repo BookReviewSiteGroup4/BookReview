@@ -14,6 +14,10 @@ namespace BookReview.Data
 
         }
 
+        public DbCon()
+        {
+
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BookReview.Data;
 using BookReview.Models;
 using BookReview.ViewModels;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookReview.Controllers
 {
@@ -74,6 +75,14 @@ namespace BookReview.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,ISBN,AuthorID")] Book book)
         {
+
+            if (CheckIfISBNisValid(book.ISBN))
+            {
+                ModelState.AddModelError("ISBN", "ISBN finns redan i databasen");
+                ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName");
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(book);
@@ -82,6 +91,17 @@ namespace BookReview.Controllers
             }
             ViewData["AuthorID"] = new SelectList(_context.Author, "Id", "FullName", book.AuthorID);
             return View(book);
+        }
+
+        private bool CheckIfISBNisValid(int ISBN)
+        {
+            if(_context.Book.Any(x => x.ISBN == ISBN))
+            {
+                return true;
+            }
+
+            return false;
+           
         }
 
         // GET: Books/Edit/5
