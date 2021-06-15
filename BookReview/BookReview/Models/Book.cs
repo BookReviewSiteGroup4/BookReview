@@ -12,7 +12,7 @@ namespace BookReview.Models
         [Required] public string Title { get; set; }
         [Required] public string Description { get; set; }
         public decimal AverageRating { get; set; }
-        [Required] public int ISBN { get; set; }
+        [Required] public long ISBN { get; set; }
 
         public int? AuthorID {get;set;}
         public virtual Author Author { get; set; }

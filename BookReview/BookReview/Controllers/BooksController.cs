@@ -93,7 +93,7 @@ namespace BookReview.Controllers
             return View(book);
         }
 
-        private bool CheckIfISBNisValid(int ISBN)
+        private bool CheckIfISBNisValid(long ISBN)
         {
             if(_context.Book.Any(x => x.ISBN == ISBN))
             {
