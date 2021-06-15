@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    [Migration("20210611093357_test")]
-    partial class test
+    [Migration("20210615085827_nullable3")]
+    partial class nullable3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace BookReview.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Birtdate")
+                    b.Property<DateTime?>("Birtdate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeathDate")
@@ -52,6 +52,13 @@ namespace BookReview.Migrations
 
                     b.Property<int?>("AuthorID")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("AverageRating")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ISBN")
                         .IsRequired()
