@@ -2,6 +2,7 @@
 
     @{
         ViewData["Title"] = "Index";
+        decimal reviewRound;
     }
 
     <h1>Statistics (godkänd av Nestor LTD)</h1>
@@ -26,9 +27,11 @@
                         @a.FullName
                     </td>
                     <td>
-                        @if(a.Books.Any(x => x.Review.Any()))
+                        @if (a.Books.Any(x => x.Review.Any()))
                         {
-                        @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore))
+                            reviewRound = @a.Books.Where(x => x.Review.Any()).Average(c => c.Review.Average(z => z.ReviewScore));
+                            Math.Round(reviewRound, 2);
+                            <span>@reviewRound</span>
                         }
                     </td>
                 </tr>
