@@ -22,28 +22,52 @@ namespace BookReview.Data
                 {
                     new Author
                     {
-                        FullName ="Paul Tannenberg", 
-                        Birtdate = new DateTime(1968,08,02), 
+                        FullName ="Paul Tannenberg",
+                        Birtdate = new DateTime(1968,08,02),
                         DeathDate = null
                     },
                     new Author
                     {
-                        FullName ="George Orwell", 
-                        Birtdate = new DateTime(1903,06,25), 
-                        DeathDate = new DateTime(1950,01,21), 
+                        FullName ="George Orwell",
+                        Birtdate = new DateTime(1903,06,25),
+                        DeathDate = new DateTime(1950,01,21),
                         Books = new List<Book>()
                         {
                             new Book
                             {
-                                Title = "1984", 
+                                Title = "1984",
                                 Description = "Winston Smith works for the Ministry of Truth in London, chief city of Airstrip One. Big Brother stares out from every poster, the Thought Police uncover every act of betrayal. When Winston finds love with Julia, he discovers that life does not have to be dull and deadening, and awakens to new possibilities.",
-                                ISBN = 9780141036144
+                                ISBN = 9780141036144,
+                                Reviews = new List<Review>()
+                                {
+                                    new Review
+                                    {
+                                        Title = "Big Brother",
+                                        Description = "Over 70 years ago Orwell predicted exactly what is happening in the USA today. His brilliant instincts for our future were uncanny. Our country is under assault right now by “Big Brother” - ie. communism.",
+                                        ReviewScore = 5
+                                    },
+                                    new Review
+                                    {
+                                        Title = "Where are the pictures?",
+                                        Description = "I can't read.",
+                                        ReviewScore = 1
+                                    }
+                                }
                             },
                             new Book
                             {
                                 Title = "Animal Farm", 
                                 Description = "Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm. Vowing to eliminate the terrible inequities of the farmyard, the renamed Animal Farm is organised to benefit all who walk on four legs.", 
-                                ISBN = 9780141036137
+                                ISBN = 9780141036137,
+                                Reviews = new List<Review>()
+                                {
+                                    new Review
+                                    {
+                                        Title = "A Warning",
+                                        Description = "This book was truly phenomenal! This novel being both political and satirical, George Orwell proves knowingly why he was one of the best authors/writers in the past century, even so his work stands out today and more relevant than ever before.",
+                                        ReviewScore = 5
+                                    }
+                                }
                             }
                         }
                     },
@@ -64,7 +88,16 @@ namespace BookReview.Data
                             {
                                 Title = "Murder on the Orient Express", 
                                 Description = "Agatha Christie's most famous murder mystery, reissued with a striking new cover with special finishes.", 
-                                ISBN = 9780008226664
+                                ISBN = 9780008226664,
+                                Reviews = new List<Review>()
+                                {
+                                    new Review
+                                    {
+                                        Title = "Very Murder!",
+                                        Description = "I like trains!",
+                                        ReviewScore = 4
+                                    }
+                                }
                             }
                         }
                     },
