@@ -1,0 +1,35 @@
+﻿@model BookReview.ViewModels.AuthorViewModel
+
+    <div class="jumbotron">
+        <h1 class="display-4">  @Html.DisplayFor(model => model.Author.FullName) </h1>
+        <p class="lead">
+            Born: @Html.DisplayFor(model => model.Author.Birtdate) <br />
+            @if (Model.Author.DeathDate != null)
+            { 
+                   
+              <p>Died: @Html.DisplayFor(model => model.Author.DeathDate) </p>
+            }
+        </p>
+        <hr class="my-4">
+        <div class="list-group">
+
+            @foreach (var book in Model.Books)
+            {
+                <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"> @book.Title </h5>
+                    <p class="mb-1"> @book.Description</p>
+                    <small> ISBN: @book.ISBN</small>
+                </div>
+                </a>
+                <hr class="my-4">
+
+
+            }
+        </div>
+        <p class="lead">
+            <a asp-controller="Authors" asp-action="Index" asp-route-id="@Model.Author" class="btn btn-primary btn-lg"> Back to authors</a>
+                
+
+        </p>
+        </div>
