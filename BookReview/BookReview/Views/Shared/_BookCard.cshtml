@@ -6,8 +6,9 @@
                 @foreach (var item in Model)
                 {
 
-                  <div class="card" style="width: 18rem; margin: 1rem 1rem;">
-                   <div class="card-body">
+            <div class="card" style="width: 18rem; margin: 1rem 1rem;">
+                <img class="card-img-top" src="~/imgs/book_covers/default.jpg" alt="Card image cap">
+                <div class="card-body">
                     <h5 class="card-title">
                         @Html.DisplayFor(modelItem => item.Title)
                     </h5>
@@ -16,8 +17,8 @@
                     <a asp-action="Edit" asp-route-id="@item.Id" class="card-link">Edit</a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="card-link">Details</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="card-link">Delete</a>
-                   </div>
-                  </div>
+                </div>
+            </div>
                 }
         </div>
     </div>
