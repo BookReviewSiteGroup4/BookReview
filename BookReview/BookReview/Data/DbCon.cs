@@ -1,4 +1,5 @@
 ﻿using BookReview.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookReview.Data
 {
-    public class DbCon : DbContext
+    public class DbCon : IdentityDbContext
     {
         public DbCon(DbContextOptions<DbCon> options) : base(options)
         {
@@ -22,13 +23,14 @@ namespace BookReview.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Book>().HasIndex(x => x.ISBN).IsUnique();
 
-            modelBuilder.Entity<Book>().HasMany(c => c.Reviews).WithOne(e => e.book);
+            //modelBuilder.Entity<Book>().HasMany(c => c.Reviews).WithOne(e => e.book);
 
-            modelBuilder.Entity<Author>().ToTable("Author");
-            modelBuilder.Entity<Book>().ToTable("Book");
-            modelBuilder.Entity<Review>().ToTable("Review");
+            //modelBuilder.Entity<Author>().ToTable("Author");
+            //modelBuilder.Entity<Book>().ToTable("Book");
+            //modelBuilder.Entity<Review>().ToTable("Review");
         }
 
        
