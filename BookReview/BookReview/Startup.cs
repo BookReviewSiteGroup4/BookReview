@@ -3,6 +3,7 @@ using BookReview.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +28,12 @@ namespace BookReview
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbCon>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<DbCon>();
+
+
             services.AddControllersWithViews();
         }
 
@@ -48,6 +54,7 @@ namespace BookReview
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
