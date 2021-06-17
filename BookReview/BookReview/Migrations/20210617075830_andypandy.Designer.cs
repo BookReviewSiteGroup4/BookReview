@@ -4,14 +4,16 @@ using BookReview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    partial class DbConModelSnapshot : ModelSnapshot
+    [Migration("20210617075830_andypandy")]
+    partial class andypandy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
