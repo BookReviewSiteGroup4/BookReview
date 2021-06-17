@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<BookReview.Models.Book>
-    <div class="container">
-        <div class="row">
-           
-
-                @foreach (var item in Model)
-                {
-
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
             <div class="card" style="width: 18rem; margin: 1rem 1rem;">
                 <img class="card-img-top" src="~/imgs/book_covers/default.jpg" alt="Card image cap">
                 <div class="card-body">
@@ -19,9 +16,9 @@
                     <a asp-action="Delete" asp-route-id="@item.Id" class="card-link">Delete</a>
                 </div>
             </div>
-                }
-        </div>
+        }
     </div>
+</div>
 
 
 
