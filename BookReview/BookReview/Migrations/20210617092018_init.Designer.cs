@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookReview.Migrations
 {
     [DbContext(typeof(DbCon))]
-    [Migration("20210616115039_AddingIdentity")]
-    partial class AddingIdentity
+    [Migration("20210617092018_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
